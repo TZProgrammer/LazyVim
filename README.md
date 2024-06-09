@@ -2,5 +2,5 @@
 
 Personal configuration for LazyVim
 
-Personal plugins added:
+Plugins added:
 - Oil.nvim
