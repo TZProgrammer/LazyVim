@@ -12,9 +12,6 @@ return {
           ["<C-c>"] = false,
           ["q"] = "actions.close",
 
-          ["<C-p>"] = false,
-          ["p"] = "actions.preview",
-
           ["<C-l>"] = false,
           ["<A-r>"] = "actions.refresh",
         },
