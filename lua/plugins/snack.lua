@@ -4,7 +4,7 @@ return {
     ---@type snacks.Config
     opts = {
       scroll = {
-        Snacks.scroll.disable(),
+        enabled = false;
       },
     },
   },
