@@ -4,4 +4,3 @@
 --
 vim.keymap.set('n', '<C-A-m>', '<C-w>h')
 vim.keymap.set('n', '<leader>{', 'A {<CR>}<Esc>O')
-
