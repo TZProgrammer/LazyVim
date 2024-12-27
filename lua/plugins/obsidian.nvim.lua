@@ -41,7 +41,7 @@ return {
   vim.keymap.set("n", "<leader>Ost", ":ObsidianTags "),
   vim.keymap.set("n", "<leader>O ", "<Cmd>ObsidianQuickSwitch<CR>"),
   vim.keymap.set("n", "<leader>Od", "<Cmd>ObsidianDailies<CR>"),
-  vim.keymap.set("n", "<leader>Oe", ":ObsidianExtractNote "),
+  vim.keymap.set("v", "<leader>Oe", ":ObsidianExtractNote "),
   vim.keymap.set("n", "<leader>Op", "<Cmd>ObsidianPasteImg<CR>"),
   vim.keymap.set("n", "<leader>Or", ":ObsidianRename "),
 }
