@@ -8,7 +8,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Use Nix-managed treesitter parsers if available
-local parser_path = vim.env.NIX_TS_PARSERS or "/nix/store/dcvxy86b9rc6m2dkrp8kkmabcbq8vi46-treesitter-parsers"
+local parser_path = vim.env.NIX_TS_PARSERS
+if not parser_path then
+  -- Fallback: try to find the path in the Nix store if env var is missing
+  local paths = vim.fn.glob("/nix/store/*-treesitter-parsers", true, true)
+  if #paths > 0 then
+    -- Sort to get the latest (usually what we want)
+    table.sort(paths)
+    parser_path = paths[#paths]
+  end
+end
+
 if parser_path then
   vim.opt.runtimepath:append(parser_path)
 end
@@ -43,7 +53,7 @@ require("lazy").setup({
   performance = {
     rtp = {
       -- Nix-provided treesitter parsers (NIX_TS_PARSERS env var set by home.nix)
-      paths = vim.env.NIX_TS_PARSERS and { vim.env.NIX_TS_PARSERS } or {},
+      paths = parser_path and { parser_path } or {},
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
