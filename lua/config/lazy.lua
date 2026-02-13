@@ -8,7 +8,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Use Nix-managed treesitter parsers if available
-local parser_path = vim.env.NIX_TS_PARSERS
+local parser_path = vim.env.NIX_TS_PARSERS or "/nix/store/dcvxy86b9rc6m2dkrp8kkmabcbq8vi46-treesitter-parsers"
 if parser_path then
   vim.opt.runtimepath:append(parser_path)
 end
