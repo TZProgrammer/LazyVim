@@ -7,7 +7,15 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Use Nix-managed treesitter parsers if available
+local parser_path = vim.env.NIX_TS_PARSERS
+if parser_path then
+  vim.opt.runtimepath:append(parser_path)
+end
+
 require("lazy").setup({
+  -- Store lockfile in data dir so it's writable even if config is in Nix store
+  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -17,6 +25,9 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
     { import = "plugins" },
+  },
+  rocks = {
+    hererocks = false, -- Disable hererocks on NixOS
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

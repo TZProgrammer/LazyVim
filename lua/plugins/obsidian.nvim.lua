@@ -25,23 +25,30 @@ return {
 
     daily_notes = {
       folder = "Recurring/Daily",
-      default_tags = { "periodic/daily" }
-    }
+      default_tags = { "periodic/daily" },
+    },
+
+    -- Disable obsidian's UI to avoid conflict with render-markdown.nvim
+    ui = { enable = false },
   },
 
-  vim.keymap.set("n", "<leader>One", "<Cmd>ObsidianNew<CR>"),
-  vim.keymap.set("n", "<leader>Ont", "<Cmd>ObsidianNewFromTemplate<CR>"),
-  vim.keymap.set("n", "<leader>Of", "<Cmd>ObsidianFollowLink<CR>"),
-  vim.keymap.set("n", "<leader>Olb", "<Cmd>ObsidianBacklinks<CR>"),
-  vim.keymap.set("n", "<leader>Olf", "<Cmd>ObsidianLinks<CR>"),
-  vim.keymap.set("v", "<leader>Olt", "<Cmd>ObsidianLink<CR>"),
-  vim.keymap.set("v", "<leader>Oln", "<Cmd>ObsidianLinkNew<CR>"),
-  vim.keymap.set("n", "<leader>Ot", "<Cmd>ObsidianToday<CR>"),
-  vim.keymap.set("n", "<leader>O/", "<Cmd>ObsidianSearch<CR>"),
-  vim.keymap.set("n", "<leader>Ost", ":ObsidianTags "),
-  vim.keymap.set("n", "<leader>O ", "<Cmd>ObsidianQuickSwitch<CR>"),
-  vim.keymap.set("n", "<leader>Od", "<Cmd>ObsidianDailies<CR>"),
-  vim.keymap.set("v", "<leader>Oe", ":ObsidianExtractNote "),
-  vim.keymap.set("n", "<leader>Op", "<Cmd>ObsidianPasteImg<CR>"),
-  vim.keymap.set("n", "<leader>Or", ":ObsidianRename "),
+  config = function(_, opts)
+    require("obsidian").setup(opts)
+
+    vim.keymap.set("n", "<leader>One", "<Cmd>ObsidianNew<CR>")
+    vim.keymap.set("n", "<leader>Ont", "<Cmd>ObsidianNewFromTemplate<CR>")
+    vim.keymap.set("n", "<leader>Of", "<Cmd>ObsidianFollowLink<CR>")
+    vim.keymap.set("n", "<leader>Olb", "<Cmd>ObsidianBacklinks<CR>")
+    vim.keymap.set("n", "<leader>Olf", "<Cmd>ObsidianLinks<CR>")
+    vim.keymap.set("v", "<leader>Olt", "<Cmd>ObsidianLink<CR>")
+    vim.keymap.set("v", "<leader>Oln", "<Cmd>ObsidianLinkNew<CR>")
+    vim.keymap.set("n", "<leader>Ot", "<Cmd>ObsidianToday<CR>")
+    vim.keymap.set("n", "<leader>O/", "<Cmd>ObsidianSearch<CR>")
+    vim.keymap.set("n", "<leader>Ost", ":ObsidianTags ")
+    vim.keymap.set("n", "<leader>O ", "<Cmd>ObsidianQuickSwitch<CR>")
+    vim.keymap.set("n", "<leader>Od", "<Cmd>ObsidianDailies<CR>")
+    vim.keymap.set("v", "<leader>Oe", ":ObsidianExtractNote ")
+    vim.keymap.set("n", "<leader>Op", "<Cmd>ObsidianPasteImg<CR>")
+    vim.keymap.set("n", "<leader>Or", ":ObsidianRename ")
+  end,
 }
