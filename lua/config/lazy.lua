@@ -31,6 +31,8 @@ require("lazy").setup({
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
+      -- Nix-provided treesitter parsers (NIX_TS_PARSERS env var set by home.nix)
+      paths = vim.env.NIX_TS_PARSERS and { vim.env.NIX_TS_PARSERS } or {},
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
